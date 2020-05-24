@@ -93,3 +93,21 @@ function removeBook(index) {
 	myLibrary.splice(index, 1);
 	render(myLibrary);
 }
+
+document.querySelector("#newBookForm").addEventListener('submit', (e) => {
+	const title = document.getElementById("book-title").value;
+	const author = document.getElementById("book-author").value;
+	const pages = document.getElementById("book-pages").value;
+
+	if (document.querySelector("#finished-reading").checked){
+		read = true;
+	}
+	else {
+		read = false;
+	}
+
+	theBook = new Book(title, author, pages, read);
+	addBookToLibrary(theBook);
+	render(myLibrary);
+	document.querySelector("#newBookForm").reset();
+})
