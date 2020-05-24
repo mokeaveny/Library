@@ -1,10 +1,11 @@
 let myLibrary = [];
 let counter = 0;
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
+	this.read = read;
 }
 
 Book.prototype.info = function() {
@@ -29,6 +30,8 @@ function render(library) {
 		const bookAuthor = document.createElement('p');
 		const bookPages = document.createElement('p');
 		const bookRemove = document.createElement('button');
+		const readButton = document.createElement("button");
+		const lineBreak = document.createElement("BR");
 	
 		bookRemove.addEventListener("click", function() {
 			theIndex = this.parentNode.getAttribute("book-index");
@@ -45,25 +48,27 @@ function render(library) {
 		bookAuthor.classList.add('author');
 		bookPages.classList.add('pages');
 		bookRemove.classList.add("bookDelete");
-		
 
 		// The content to be displayed in each DOM element
 		bookTitle.textContent = book.title;
 		bookAuthor.textContent = `Author: ${book.author}`;
 		bookPages.textContent = `${book.pages} Pages`;
+		readButton.textContent = book.read ? "Read": "Not Read";
 		bookRemove.textContent = "Delete Book";
 
 		div.appendChild(bookTitle);
 		div.appendChild(bookAuthor);
 		div.appendChild(bookPages);
+		div.appendChild(readButton);
+		div.appendChild(lineBreak);
 		div.appendChild(bookRemove);
 		libraryContainer.appendChild(div);
 	})
 }
 
-theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 455);
+theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 455, true);
 addBookToLibrary(theHobbit);
-theHungerGames = new Book("The Hunger Games", "Suzanne Collins", 200);
+theHungerGames = new Book("The Hunger Games", "Suzanne Collins", 200, false);
 addBookToLibrary(theHungerGames);
 
 render(myLibrary);
