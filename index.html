@@ -10,14 +10,21 @@
 
 		<div class="library-container">
 		</div>
+
+		<button type="button" onclick="newBookForm(1)">NEW BOOK</button>
+		<button type="button" onclick="newBookForm(0)">HIDE BOOK</button>
 		
-		<form>
+		<form id="newBookForm" action="">
 			<label for="book-title">Book Title:</label><br>
 			<input type="text" id="book-title" name="book-title"><br>
 			<label for="book-author">Author:</label><br>
 			<input type="text" id="book-author" name="book-author"><br>
 			<label for="book-pages">Number of Pages:</label><br>
 			<input type="text" id="book-pages" name="book-pages"><br>
+			<input type="radio" id="currently-reading" name="read" value="currently-reading">
+			<label for="currently-reading" id="currently-reading">Currently Reading</label>
+			<input type="radio" id="finished-reading" name="read" value="finished-reading">
+			<label for="finished-reading" id="finished-reading">Finished Reading</label><br>
 			<input type="submit" value="Submit">
 		</form>
 

@@ -49,3 +49,17 @@ addBookToLibrary(theHungerGames);
 
 render(myLibrary);
 
+window.onload = function() {
+	document.getElementById("newBookForm").style.display = "none";
+};
+
+// When the show parameter isn't 1 then the form isn't shown.
+function newBookForm(show) {
+	if (show == 1) {
+		document.getElementById("newBookForm").style.display = "block";
+	}
+	else {
+		document.getElementById("newBookForm").style.display = "none";
+	}
+}
+
