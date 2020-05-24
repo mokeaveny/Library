@@ -24,6 +24,7 @@ function render(library) {
 		// Create the elements to display the book values
 		const div = document.createElement('div');
 		div.setAttribute("book-index", counter);
+		counter = counter + 1;
 		const bookTitle = document.createElement('p');
 		const bookAuthor = document.createElement('p');
 		const bookPages = document.createElement('p');
@@ -31,8 +32,12 @@ function render(library) {
 	
 		bookRemove.addEventListener("click", function() {
 			theIndex = this.parentNode.getAttribute("book-index");
-			libraryContainer.removeChild(this.parentNode);
+			//While loop that removes all of the div book elements
+			while(libraryContainer.firstChild) {
+				libraryContainer.firstChild.remove();
+			}
 			removeBook(theIndex)
+			counter = counter - 1;
 		})
 
 		// Add the class names to the elements
@@ -79,5 +84,7 @@ function newBookForm(show) {
 
 function removeBook(index) {
 	console.log(index);
+	// Removes one element from the given index
 	myLibrary.splice(index, 1);
+	render(myLibrary);
 }
