@@ -1,4 +1,5 @@
 let myLibrary = [];
+let counter = 0;
 
 function Book(title, author, pages) {
 	this.title = title;
@@ -18,26 +19,39 @@ function addBookToLibrary(book) {
 const libraryContainer = document.querySelector('.library-container');
 
 function render(library) {
+	counter = 0;
 	library.forEach(book => {
 		// Create the elements to display the book values
 		const div = document.createElement('div');
+		div.setAttribute("book-index", counter);
 		const bookTitle = document.createElement('p');
 		const bookAuthor = document.createElement('p');
 		const bookPages = document.createElement('p');
+		const bookRemove = document.createElement('button');
+	
+		bookRemove.addEventListener("click", function() {
+			theIndex = this.parentNode.getAttribute("book-index");
+			libraryContainer.removeChild(this.parentNode);
+			removeBook(theIndex)
+		})
 
 		// Add the class names to the elements
 		bookTitle.classList.add('title');
 		bookAuthor.classList.add('author');
 		bookPages.classList.add('pages');
+		bookRemove.classList.add("bookDelete");
+		
 
 		// The content to be displayed in each DOM element
 		bookTitle.textContent = book.title;
 		bookAuthor.textContent = `Author: ${book.author}`;
 		bookPages.textContent = `${book.pages} Pages`;
+		bookRemove.textContent = "Delete Book";
 
 		div.appendChild(bookTitle);
 		div.appendChild(bookAuthor);
 		div.appendChild(bookPages);
+		div.appendChild(bookRemove);
 		libraryContainer.appendChild(div);
 	})
 }
@@ -63,3 +77,7 @@ function newBookForm(show) {
 	}
 }
 
+function removeBook(index) {
+	console.log(index);
+	myLibrary.splice(index, 1);
+}
